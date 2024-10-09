@@ -1,0 +1,286 @@
+/* 全局设置，禁用页面缩放 */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* 禁用滚动 */
+}
+
+/* 欢迎页面样式 */
+.welcome-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('items/page-welcome.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* 欢迎页面最顶层 */
+    transition: opacity 1s ease-in-out; /* 欢迎页面淡出效果 */
+}
+
+/* 滚动容器样式 */
+.scroll-container {
+    display: flex;
+    /* justify-content: space-between;
+    align-items: center; */
+    height: 100vh;
+    width: 100vw;
+    position:fixed;
+    top: 0;
+    left: 47.2%;
+    z-index: 2; /* 滚动元素在背景之上，按钮之下 */
+}
+
+/* 滚动元素样式 */
+.scroll {
+    display: flex;
+    width: auto;
+    height: auto;
+    /* left: 46%;
+    align-items: center;
+    justify-content: center; */
+    gap: 0px;
+    max-height: 100vh;
+    transition: transform 2s linear; /* 滚动动画效果 */
+}
+
+/* 左侧滚动到左边界 */
+.scroll-pan-left {
+    transform: translateX(-40vw) ; /* 左侧滚动到左边 */
+}
+
+/* 右侧滚动到右边界 */
+.scroll-pan-right {
+    transform: translateX(40vw); /* 右侧滚动到右边 */
+}
+
+/* 主背景 */
+.main-background {
+    display: none;
+    position: absolute;
+    height: 86vh;
+    width:80vw;
+    top: 42vh;
+    left: 50vw;
+    object-fit: cover;
+    /* top: 2px;
+    left: 5px;
+    width: 1600px;
+    height: 800px; */
+    background-image: url('items/main-background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-x;
+    transform: translate(-50%, -40%); /* 修正图片的位置偏移 */
+    animation: expand 2s linear; /* 应用动画 */
+    transform-origin: center;
+    z-index: 1; /* 主背景最底层 */
+}
+
+.back-to-welcome {
+    position: absolute;
+    opacity: 1;
+    width: 100px;
+    height: 100px;
+    top:5%;
+    left:93%;
+    background-image: url('items/HomepageButton.png');
+    z-index: 9; /* 主背景最底层 */
+}
+.back-to-welcome:hover {
+    transform: scale(1.1); /* 鼠标悬停时放大元素 */
+    /* background-color: #FFFF00; 黄色高亮 */
+  }
+
+.backToMainButton {
+    position: absolute;
+    opacity: 1;
+    /* width: 10vw;
+    height: 20vh;
+    background-size: cover;
+    top:50%;
+    left:70%; */
+
+    width: 100px;
+    height: 100px;
+    top:25%;
+    left:93%;
+    background-image: url('items/backToMainButton.png');
+    z-index: 8;
+}
+.backToMainButton:hover {
+    transform: scale(1.1); 
+  } 
+/* .mainInterface.show {
+    display: block;
+  } */
+
+
+/* 主界面按钮容器样式 */
+.button-container {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    background-image: url('items/button-background.png');
+
+    
+    background-color: rgba(0, 0, 0, 0.2); 
+    /* 半透明背景 */
+    z-index: 3; /* 按钮容器在滚动条上方 */
+    display: grid;
+    padding-left: 50px;
+    grid-template-columns: repeat(8, minmax(20px, 1fr));
+    grid-template-rows: 1x;  
+    /* grid-gap: 1px;  */
+    /* 设置网格间隙 */
+    gap: -1px -1px;
+    justify-content: space-around;
+        /* grid-template-rows: repeat(10, 1fr);    */
+    /* justify-content: center;
+    justify-items:auto; */
+
+    /* display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;  */
+    /* flex-direction: row-reverse;  */
+    /* justify-content: space-between;  */
+    /* 或使用 space-around 或 space-evenly 来分配空间 */
+    align-items: center; 
+    /* 从顶部对齐 */
+    box-sizing: border-box;
+
+    width: 80vw; /* 占主界面90%的宽度 */
+    height: 70vh; /* 占主界面90%的高度 */
+    margin:auto;
+}
+
+/* 按钮图片 */
+.image-button {
+    position: relative;
+    /* flex: 1 1 auto; */
+    /* max-width: 60px; 
+    min-width: 30px; 
+    height: auto; */
+    width: 60px;
+    height: 40px;
+    scale: 0.7; 
+    z-index: 4; /* 按钮图片位于最高层 */
+    background-color: rgba(0, 0, 0, 0); /* 半透明背景 */
+    align-items: flex-start; 
+    float: center;
+    margin-bottom: -1px;
+    border: none;
+    cursor: pointer;
+}
+
+.image-button:hover {
+    transform: scale(1.1); /* 鼠标悬停时放大元素 */
+    /* background-color: #FFFF00; 黄色高亮 */
+  }
+/* 弹出框样式 */
+.popup {
+    display: none;
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    width: 90vw;
+    height: 90vh;
+    /* background-color: rgba(0, 0, 0, 0.5); 半透明背景 */
+    justify-content: center;
+    align-items: center;
+    z-index: 5; /* 弹出框在按钮之上 */
+}
+
+/* 弹出框内容样式 */
+.popup-content {
+    /* background-color: white(8, 8, 8); */
+    width: 90%;
+    height: 105%;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    animation: expand-from-center 1s forwards; /* 弹出图片 */
+}
+
+.scaling-icon {
+    position: absolute;
+    width: 240px;
+    height: 300px;
+    object-fit: cover;
+    background-size: cover;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    top:24%;
+    left:64%;
+    /* align-items: flex-start;  */
+
+    animation: scale-animation 2s infinite alternate; /* 应用名为scale-animation的动画，持续时间为2秒，无限循环，交替进行 */
+  }
+/* 整个项目的遮罩 */
+.shading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('items/shading.png'); /* 遮罩图片 */
+    background-size: cover;
+    background-position: center;
+    z-index: 0; /* 遮罩在最底层 */
+    opacity: 0.7; /* 半透明效果 */
+}
+/* 打开动画 */
+
+
+/* 淡出动画 */
+.popup.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+/* 关闭按钮 */
+.close-popup {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; visibility: hidden; }
+}
+
+@keyframes expand-from-center {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes expand {
+    0% {
+        width: 0vw; /* 动画开始时，图片宽度为0 */
+    }
+    100% {
+        width: 80vw; /* 动画结束时，图片宽度为100% */
+    }
+}
+
+@keyframes scale-animation {
+    from {
+      transform: scale(1); /* 动画开始时，图标大小为原始大小 */
+    }
+    to {
+      transform: scale(1.1); /* 动画结束时，图标放大20% */
+    }
+  }
+
